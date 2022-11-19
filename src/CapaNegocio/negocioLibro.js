@@ -21,5 +21,24 @@ const obtenerLibros = async () => {
     return libros
 }
 
+const borrarLibro = async ({name}) => {
+    const libro = await Libro.findOne({where:{name:name}})
+
+    if(!libro){
+        return {mensaje:'libro no existe', exito:false}
+    }else {
+        const resp = await Libro.destroy({where:{name:name}})
+        return resp
+    }
+}
+
+const actualizarLibro = async ({id,name,publisher,autorId,categoriaId}) => {
+    const libro = await Libro.findOne({where:{id:id}})
+    const result = await libro.update({name:name,publisher:publisher,autorId:autorId, categoryId:categoriaId})
+    return result;
+}
+
+exports.borrarLibro = borrarLibro;
+exports.actualizarLibro = actualizarLibro;
 exports.obtenerLibros = obtenerLibros;
 exports.crearLibro = crearLibro;

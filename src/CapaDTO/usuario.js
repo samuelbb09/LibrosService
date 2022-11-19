@@ -29,8 +29,8 @@ Usuario.loadAssociations = () => {
     const { Reserva } = require("./reserva");
     const { Reclamo } = require("./reclamo");
     const { Libro } = require("./libro");
-    Usuario.belongsToMany(Libro, { through: Reserva});
-    Usuario.belongsToMany(Libro, { through: Reclamo});
+    Usuario.belongsToMany(Libro, { through: Reserva, onDelete:'cascade'});
+    Usuario.belongsToMany(Libro, { through: Reclamo, onDelete:'cascade'});
     
 }
 

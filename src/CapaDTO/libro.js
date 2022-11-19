@@ -24,12 +24,12 @@ Libro.loadAssociations = () => {
     const { Reclamo } = require("./reclamo");
     const { Reserva } = require("./reserva");
     const { Usuario } = require("./usuario");
-    Libro.belongsTo(Autor, {foreignKey:{field:'autor_id'}})
-    Libro.belongsTo(Categoria, {foreignKey:{field:'categoria_id'}})
-    Libro.belongsToMany(Usuario, { through: Reserva});
+    Libro.belongsTo(Autor, {foreignKey:{field:'autor_id'}, onDelete:'cascade'})
+    Libro.belongsTo(Categoria, {foreignKey:{field:'categoria_id'}, onDelete:'cascade'})
+    Libro.belongsToMany(Usuario, { through: Reserva,onDelete:'cascade'});
 
     //Libro.belongsToMany(Usuario, { through: Reserva, foreignKey: {field: 'libro_id', name: 'libroId'}});
-    Libro.belongsToMany(Usuario, { through: Reclamo});
+    Libro.belongsToMany(Usuario, { through: Reclamo, onDelete:'cascade'});
 }
 
 

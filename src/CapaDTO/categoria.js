@@ -19,7 +19,7 @@ const Categoria = conexion.define('category',{
 
 Categoria.loadAssociations = () => {
     const { Libro } = require("./libro");
-    Categoria.hasMany(Libro, {foreignKey:{field:'categoria_id'}})
+    Categoria.hasMany(Libro, {foreignKey:{field:'categoria_id'},onDelete:'cascade'})
 }
 
 

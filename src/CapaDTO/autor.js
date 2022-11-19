@@ -18,7 +18,7 @@ const Autor = conexion.define('autor',{
 
 Autor.loadAssociations = () => {
     const { Libro } = require("./libro");
-    Autor.hasMany(Libro, {foreignKey:{field:'autor_id'}})
+    Autor.hasMany(Libro, {foreignKey:{field:'autor_id'},onDelete:'cascade', hooks:true})
 }
 
 
