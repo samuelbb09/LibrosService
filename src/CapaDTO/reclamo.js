@@ -4,7 +4,12 @@ const { conexion } = require("../CapaConexion/Conexion");
 
 
 const Reclamo = conexion.define('reclamo',{
-    comment: {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    }
+    ,comment: {
         type: DataTypes.STRING,
         field: 'comentario'
     }

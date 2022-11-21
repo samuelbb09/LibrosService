@@ -1,9 +1,15 @@
+const { DataTypes } = require("sequelize");
 const { conexion } = require("../CapaConexion/Conexion");
 
 
 
 
 const Reserva = conexion.define('reserva',{
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    }
 
 }, {
     tableName: 'reservas', timestamps:false

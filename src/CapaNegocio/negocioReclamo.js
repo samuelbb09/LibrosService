@@ -9,31 +9,31 @@ const crearReclamo = async ({usuarioId, comment,libroId}) => {
 }
 
 const obtenerReclamos = async ({usuarioId}) => {
-    const reclamo = await Reclamo.findOne({where:{usuarioId:usuarioId}, include: [Usuario, Libro]})
+    const reclamo = await Reclamo.findAll({where:{usuarioId:usuarioId}, include: [Usuario, Libro]})
     return reclamo;
 }
 
-const borrarReclamo = async ({usuarioId, libroId}) => {
+const borrarReclamo = async ({reclamoId}) => {
     
-    const reclamo = await Reclamo.findOne({where:{usuarioId:usuarioId, libroId:libroId}})
+    const reclamo = await Reclamo.findOne({where:{id:reclamoId}})
 
     if(!reclamo){
         return {mensaje:'reclamo no existe', exito:false}
     }else {
-        const resp = await Reclamo.destroy({where:{usuarioId:usuarioId, libroId:libroId}})
+        const resp = await reclamo.destroy()
         return resp
     }
 
 }
 
-const actualizarReclamo = async ({usuarioId, libroId, comment}) => {
+const actualizarReclamo = async ({reclamoId, comment}) => {
 
-const reclamo = await Reclamo.findOne({where:{usuarioId:usuarioId, libroId:libroId}})
+const reclamo = await Reclamo.findOne({where:{id:reclamoId}})
 
 if(!reclamo){
     return {mensaje:'reclamo no existe', exito:false}
 }else {
-    const resp = await Reclamo.update({comment:comment}, {where:{usuarioId:usuarioId, libroId:libroId}})
+    const resp = await reclamo.update({comment:comment})
     return resp
 }
 

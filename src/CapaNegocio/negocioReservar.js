@@ -9,31 +9,31 @@ const crearReserva = async ({usuarioId, libroId}) => {
 }
 
 const obtenerReservas = async ({usuarioId}) => {
-    const reserva = await Reserva.findOne({where:{usuarioId:usuarioId}, include: [Usuario, Libro]})
+    const reserva = await Reserva.findAll({where:{usuarioId:usuarioId}, include: [Usuario, Libro]})
     return reserva;
 }
 
-const borrarReserva = async ({usuarioId, libroId}) => {
+const borrarReserva = async ({reservaId}) => {
     
-        const reserva = await Reserva.findOne({where:{usuarioId:usuarioId, libroId:libroId}})
+        const reserva = await Reserva.findOne({where:{id:reservaId}})
     
         if(!reserva){
             return {mensaje:'reserva no existe', exito:false}
         }else {
-            const resp = await Reserva.destroy({where:{usuarioId:usuarioId, libroId:libroId}})
+            const resp = await reserva.destroy()
             return resp
         }
     
 }
 
-const actualizarReserva = async ({usuarioId, libroId, nuevolibroId}) => {
+const actualizarReserva = async ({reservaId, libroId}) => {
     
-    const reserva = await Reserva.findOne({where:{usuarioId:usuarioId, libroId:libroId}})
+    const reserva = await Reserva.findOne({where:{id:reservaId}})
 
     if(!reserva){
         return {mensaje:'reserva no existe', exito:false}
     }else {
-        const resp = await Reserva.update({libroId:nuevolibroId}, {where:{usuarioId:usuarioId, libroId:libroId}})
+        const resp = await reserva.update({libroId:libroId})
         return resp
     }
 
