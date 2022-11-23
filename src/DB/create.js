@@ -11,7 +11,7 @@ const updateOrCreateDatabase = async () => {
     }
 
 
-    console.log('Rinning test query...');
+    console.log('Running test query...');
 
 };
 

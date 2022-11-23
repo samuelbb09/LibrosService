@@ -113,7 +113,9 @@ const actualizarReservaWeb = async (req,res) => {
 }
 
 const obtenerReservasWeb = async (req,res) => {
-    const reservas = await obtenerReservas(req.body)
+    const { usuarioId } = req.query;
+    const reservas = await obtenerReservas({usuarioId})
+    console.log(reservas)
     res.json(reservas)
 }
 
@@ -123,7 +125,9 @@ const crearReclamoWeb = async (req,res) => {
 }
 
 const obtenerReclamosWeb = async (req,res) => {
-    const reclamos = await obtenerReclamos(req.body)
+
+    const { usuarioId } = req.query;
+    const reclamos = await obtenerReclamos({ usuarioId})
     res.json(reclamos)
 }
 
