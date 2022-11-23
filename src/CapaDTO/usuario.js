@@ -4,6 +4,7 @@ const { conexion } = require("../CapaConexion/Conexion");
 
 
 
+
 const Usuario = conexion.define('usuario',{
     user: {
         type: DataTypes.STRING,
@@ -29,8 +30,13 @@ Usuario.loadAssociations = () => {
     const { Reserva } = require("./reserva");
     const { Reclamo } = require("./reclamo");
     const { Libro } = require("./libro");
+    const { Opinion } = require("./opinion");
+    const { Autor } = require("./autor");
+    const { Recomendacion } = require("./recomendacion");
     Usuario.belongsToMany(Libro, { through: Reserva, onDelete:'cascade'});
+    Usuario.belongsToMany(Autor, { through: Recomendacion, onDelete:'cascade'});
     Usuario.belongsToMany(Libro, { through: Reclamo, onDelete:'cascade'});
+    Usuario.belongsToMany(Libro, { through: Opinion, onDelete:'cascade'});
     
 }
 

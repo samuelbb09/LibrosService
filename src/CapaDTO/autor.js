@@ -3,6 +3,7 @@ const { conexion } = require("../CapaConexion/Conexion");
 
 
 
+
 const Autor = conexion.define('autor',{
     name: {
         type: DataTypes.STRING,
@@ -18,7 +19,11 @@ const Autor = conexion.define('autor',{
 
 Autor.loadAssociations = () => {
     const { Libro } = require("./libro");
+    const { Recomendacion } = require("./recomendacion");
+    const { Usuario } = require("./usuario");
     Autor.hasMany(Libro, {foreignKey:{field:'autor_id'},onDelete:'cascade', hooks:true})
+    Autor.belongsToMany(Usuario, { through: Recomendacion, onDelete:'cascade'});
+
 }
 
 

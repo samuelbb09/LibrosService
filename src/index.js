@@ -2,7 +2,7 @@ const express = require('express')
 const app = express();
 const bodyParser = require('body-parser');
 var cors = require('cors');
-const { crearUsuarioWeb, ingresarUsuarioWeb, crearCategoriaWeb, verCategoriasWeb, crearAutorWeb, verAutoresWeb, crearLibroWeb, obtenerLibrosWeb, crearReservaWeb, obtenerReservasWeb, obtenerReclamosWeb, crearReclamoWeb, borrarUsuarioWeb, actualizarUsuarioWeb, borrarLibroWeb, actualizarLibroWeb, borrarAutorWeb, actualizarAutorWeb, borrarCategoriaWeb, actualizarCategoriaWeb, borrarReservaWeb, actualizarReservaWeb, borrarReclamoWeb, actualizarReclamoWeb } = require('./CapaServicio/librosWebService');
+const { crearUsuarioWeb, ingresarUsuarioWeb, crearCategoriaWeb, verCategoriasWeb, crearAutorWeb, verAutoresWeb, crearLibroWeb, obtenerLibrosWeb, crearReservaWeb, obtenerReservasWeb, obtenerReclamosWeb, crearReclamoWeb, borrarUsuarioWeb, actualizarUsuarioWeb, borrarLibroWeb, actualizarLibroWeb, borrarAutorWeb, actualizarAutorWeb, borrarCategoriaWeb, actualizarCategoriaWeb, borrarReservaWeb, actualizarReservaWeb, borrarReclamoWeb, actualizarReclamoWeb, crearPaisWeb, crearEditorialWeb, verEditorialesWeb, verPaisesWeb, borrarPaisWeb, actualiazarPaisWeb, actualizarPaisWeb, borrarEditorialeWeb, actualizarEditorialeWeb, crearOpinionWeb, obtenerOpinionesWeb, borrarOpinionWeb, actualizarOpinionWeb, crearRecomendacionWeb, obtenerRecomendacionWeb, obtenerRecomendacionesWeb, actualizarRecomendacionWeb, borrarRecomendacionWeb } = require('./CapaServicio/librosWebService');
 require('./CapaConexion/Conexion')
 require('./DB/loadassociations').loadAll();
 
@@ -34,5 +34,21 @@ app.get('/reclamo', obtenerReclamosWeb)
 app.post('/reclamo/crear', crearReclamoWeb)
 app.post('/reclamo/borrar', borrarReclamoWeb)
 app.post('/reclamo/actualizar', actualizarReclamoWeb)
+app.post('/pais/crear', crearPaisWeb)
+app.get('/pais', verPaisesWeb)
+app.post('/pais/borrar', borrarPaisWeb)
+app.post('/pais/actualizar', actualizarPaisWeb)
+app.post('/editorial/crear', crearEditorialWeb)
+app.get('/editorial', verEditorialesWeb)
+app.post('/editorial/borrar', borrarEditorialeWeb)
+app.post('/editorial/actualizar', actualizarEditorialeWeb)
+app.post('/opinion/crear', crearOpinionWeb)
+app.get('/opinion', obtenerOpinionesWeb)
+app.post('/opinion/borrar', borrarOpinionWeb)
+app.post('/opinion/actualizar', actualizarOpinionWeb)
+app.post('/recomendacion/crear', crearRecomendacionWeb)
+app.get('/recomendacion', obtenerRecomendacionesWeb)
+app.post('/recomendacion/actualizar', actualizarRecomendacionWeb)
+app.post('/recomendacion/borrar', borrarRecomendacionWeb)
 
 app.listen(8000, () => {console.log('app running');})

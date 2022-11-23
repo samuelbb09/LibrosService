@@ -1,7 +1,11 @@
 const { crearAutor, verAutores, borrarAutor, actualizarAutor } = require("../CapaNegocio/negocioAutor")
 const { crearCategoria, verCategorias, borrarCategoria, actualizarCategoria } = require("../CapaNegocio/negocioCategoria")
+const { crearEditorial, verEditoriales, actualizarEditorial, borrarEditorial } = require("../CapaNegocio/negocioEditorial")
 const { crearLibro, obtenerLibros, borrarLibro, actualizarLibro } = require("../CapaNegocio/negocioLibro")
+const { crearOpinion, obtenerOpiniones, borrarOpinion, actualizarOpinion } = require("../CapaNegocio/negocioOpinion")
+const { crearPais, actualizarPais, verPaises, borrarPais } = require("../CapaNegocio/negocioPais")
 const { obtenerReclamos, crearReclamo, borrarReclamo, actualizarReclamo } = require("../CapaNegocio/negocioReclamo")
+const { crearRecomendacion, obtenerRecomendaciones, borrarRecomendacion, actualizarRecomendacion } = require("../CapaNegocio/negocioRecomendacion")
 const { crearReserva, obtenerReservas, borrarReserva, actualizarReserva } = require("../CapaNegocio/negocioReservar")
 const { crearUsuario, ingresarUsuario, borrarUsuario, actualizarUsuario } = require("../CapaNegocio/negocioUsuario")
 
@@ -141,6 +145,103 @@ const actualizarReclamoWeb = async (req,res) => {
     res.json(resp)
 }
 
+const crearPaisWeb = async (req,res) => {
+    const resp = await crearPais(req.body)
+    res.json(resp)
+}
+
+const actualizarPaisWeb = async (req,res) => {
+    const resp = await actualizarPais(req.body)
+    res.json(resp)
+}
+
+const verPaisesWeb = async (req,res) => {
+    const resp = await verPaises()
+    res.json(resp)
+}
+
+const borrarPaisWeb = async (req,res) => {
+    const resp = await borrarPais(req.body)
+    res.json(resp)
+}
+
+const crearEditorialWeb = async (req,res) => {
+    const resp = await crearEditorial(req.body)
+    res.json(resp)
+}
+
+const verEditorialesWeb = async (req,res) => {
+    const resp = await verEditoriales();
+    res.json(resp)
+}
+
+const actualizarEditorialeWeb = async (req,res) => {
+    const resp = await actualizarEditorial(req.body);
+    res.json(resp)
+}
+
+const borrarEditorialeWeb = async (req,res) => {
+    const resp = await borrarEditorial(req.body);
+    res.json(resp)
+}
+
+const crearOpinionWeb = async (req,res) => {
+    const resp = await crearOpinion(req.body)
+    res.json(resp)
+}
+
+const obtenerOpinionesWeb = async (req,res) => {
+    const {libroId} = req.query
+    const resp = await obtenerOpiniones(libroId)
+    res.json(resp)
+}
+
+const borrarOpinionWeb = async (req,res) => {
+    const resp = await borrarOpinion(req.body)
+    res.json(resp)
+}
+
+const actualizarOpinionWeb = async (req,res) => {
+    const resp = await actualizarOpinion(req.body)
+    res.json(resp)
+}
+
+const crearRecomendacionWeb = async (req,res) => {
+    const resp = await crearRecomendacion(req.body)
+    res.json(resp)
+}
+
+const obtenerRecomendacionesWeb = async (req,res) => {
+    const {autorId} = req.query
+    const resp = await obtenerRecomendaciones(autorId)
+    res.json(resp)
+}
+
+const borrarRecomendacionWeb = async (req,res) => {
+    const resp = await borrarRecomendacion(req.body)
+    res.json(resp)
+}
+
+const actualizarRecomendacionWeb = async (req,res) => {
+    const resp = await actualizarRecomendacion(req.body)
+    res.json(resp)
+}
+exports.crearRecomendacionWeb = crearRecomendacionWeb;
+exports.obtenerRecomendacionesWeb = obtenerRecomendacionesWeb;
+exports.borrarRecomendacionWeb = borrarRecomendacionWeb;
+exports.actualizarRecomendacionWeb=actualizarRecomendacionWeb;
+exports.borrarOpinionWeb = borrarOpinionWeb;
+exports.actualizarOpinionWeb = actualizarOpinionWeb;
+exports.obtenerOpinionesWeb = obtenerOpinionesWeb;
+exports.crearOpinionWeb = crearOpinionWeb;
+exports.actualizarEditorialeWeb = actualizarEditorialeWeb;
+exports.borrarEditorialeWeb = borrarEditorialeWeb;
+exports.verEditorialesWeb = verEditorialesWeb;
+exports.crearEditorialWeb = crearEditorialWeb;
+exports.verPaisesWeb = verPaisesWeb;
+exports.borrarPaisWeb = borrarPaisWeb;
+exports.actualizarPaisWeb = actualizarPaisWeb; 
+exports.crearPaisWeb = crearPaisWeb;
 exports.actualizarReclamoWeb = actualizarReclamoWeb;
 exports.borrarReclamoWeb = borrarReclamoWeb;
 exports.actualizarReservaWeb = actualizarReservaWeb;
