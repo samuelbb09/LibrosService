@@ -12,7 +12,9 @@ const { crearUsuario, ingresarUsuario, borrarUsuario, actualizarUsuario } = requ
 
 
 const crearUsuarioWeb = async (req,res) => {
+    console.log('holaa');
     const usuarioCreado = await crearUsuario(req.body)
+    
     res.json(usuarioCreado)
 }
 
