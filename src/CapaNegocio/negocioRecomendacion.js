@@ -10,6 +10,11 @@ const crearRecomendacion = async ({usuarioId, comment,autorId}) => {
 
 const obtenerRecomendaciones = async (autorId) => {
     const recomendacion = await Recomendacion.findAll({where:{autorId:autorId}, include: [Usuario, Autor]})
+    recomendacion.forEach(e => {
+        e.setDataValue('nombreUsuario', e.usuario.user)
+        e.setDataValue('nombreAutor', e.autor.name)
+
+    });
     return recomendacion;
 }
 

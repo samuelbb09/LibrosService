@@ -10,6 +10,11 @@ const crearReserva = async ({usuarioId, libroId}) => {
 
 const obtenerReservas = async ({usuarioId}) => {
     const reserva = await Reserva.findAll({where:{usuarioId:usuarioId}, include: [Usuario, Libro]})
+    reserva.forEach(e => {
+        e.setDataValue('nombreUsuario', e.usuario.user)
+        e.setDataValue('nombreLibro', e.libro.name)
+
+    });
     return reserva;
 }
 

@@ -26,7 +26,10 @@ const obtenerLibros = async () => {
             name: l.name,
             autorId: l.autorId,
             publisher: l.editorial ? l.editorial.id : 'NULL',
-            categoryId: l.category.id
+            categoryId: l.category.id,
+            nombreAutor: l.autor.name,
+            nombreCategoria: l.category.name,
+            nombreEditorial: l.editorial.name
         }
     })
     return data

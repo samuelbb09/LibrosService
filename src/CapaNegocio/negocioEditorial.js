@@ -1,4 +1,5 @@
 const { Editorial } = require("../CapaDTO/editorial");
+const { Pais } = require("../CapaDTO/pais");
 
 
 
@@ -8,7 +9,11 @@ const crearEditorial = async ({name,paisId}) => {
 }
 
 const verEditoriales = async () => {
-    const editoriales = await Editorial.findAll()
+    const editoriales = await Editorial.findAll({include:{model:Pais}})
+    //editoriales.nombrePais = editoriales.pai.name;
+    editoriales.forEach(e => {
+        e.setDataValue('nombrePais',e.pai.name);
+    });
     return editoriales
 }
 

@@ -10,6 +10,11 @@ const crearReclamo = async ({usuarioId, comment,libroId}) => {
 
 const obtenerReclamos = async ({usuarioId}) => {
     const reclamo = await Reclamo.findAll({where:{usuarioId:usuarioId}, include: [Usuario, Libro]})
+    reclamo.forEach(e => {
+        e.setDataValue('nombreUsuario', e.usuario.user)
+        e.setDataValue('nombreLibro', e.libro.name)
+
+    });
     return reclamo;
 }
 
