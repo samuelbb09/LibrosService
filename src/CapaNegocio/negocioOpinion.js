@@ -9,13 +9,24 @@ const crearOpinion = async ({usuarioId, comment,libroId, score}) => {
 }
 
 const obtenerOpiniones = async (libroId) => {
-    const opiniones = await Opinion.findAll({where:{libroId:libroId},include: [Usuario, Libro]})
-    opiniones.forEach(e => {
+    if(libroId){
+        const opiniones = await Opinion.findAll({where:{libroId:libroId},include: [Usuario, Libro]})
+        opiniones.forEach(e => {
         e.setDataValue('nombreUsuario', e.usuario.user)
         e.setDataValue('nombreLibro', e.libro.name)
 
     });
     return opiniones;
+    }else {
+        const opiniones = await Opinion.findAll({include: [Usuario, Libro]})
+        opiniones.forEach(e => {
+        e.setDataValue('nombreUsuario', e.usuario.user)
+        e.setDataValue('nombreLibro', e.libro.name)
+
+    });
+    return opiniones;
+    }
+    
 }
 
 const borrarOpinion = async ({opinionId}) => {

@@ -215,7 +215,7 @@ const crearRecomendacionWeb = async (req,res) => {
 }
 
 const obtenerRecomendacionesWeb = async (req,res) => {
-    const {autorId} = req.query
+    var {autorId} = req.query
     const resp = await obtenerRecomendaciones(autorId)
     res.json(resp)
 }
