@@ -15,7 +15,7 @@ const ingresarUsuario = async ({username,password}) => {
         return {mensaje:'usuario no existe', exito:false}
     }else {
         if(user.password == password){
-            return {mensaje:'ingreso correcto', exito:true}
+            return {mensaje:'ingreso correcto', userId: user.id,exito:true}
         }else {
             return {mensaje:'contraseña incorrecta', exito:false}
         }

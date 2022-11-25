@@ -18,7 +18,7 @@ const Editorial = conexion.define('editorial',{
 Editorial.loadAssociations = () => {
     const { Libro } = require("./libro");
     const { Pais } = require("./pais");
-    Editorial.belongsTo(Pais, {foreignKey:{field:'pais_id'}, onDelete:'cascade'})
+    Editorial.belongsTo(Pais, {foreignKey:{field:'pais_id', name: 'paisId'}, onDelete:'cascade'})
     Editorial.hasMany(Libro, {foreignKey:{field:'editorial_id'}, onDelete:'cascade'})
     
 }

@@ -19,7 +19,17 @@ const crearLibro = async ({name,editorialId,autorId, categoriaId}) => {
 
 const obtenerLibros = async () => {
     const libros = await Libro.findAll({include: [{model: Autor}, {model:Categoria}, {model:Editorial}]})
-    return libros
+    const data = libros.map( l => {
+        console.log(l)
+        return {
+            id: l.id,
+            name: l.name,
+            autorId: l.autorId,
+            publisher: l.editorial ? l.editorial.id : 'NULL',
+            categoryId: l.category.id
+        }
+    })
+    return data
 }
 
 const borrarLibro = async ({name}) => {

@@ -174,6 +174,7 @@ const crearEditorialWeb = async (req,res) => {
 
 const verEditorialesWeb = async (req,res) => {
     const resp = await verEditoriales();
+    console.log('Query editoriales,', resp)
     res.json(resp)
 }
 
