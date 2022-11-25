@@ -11,6 +11,7 @@ const crearLibro = async ({name,editorialId,autorId, categoriaId}) => {
         const libro = await Libro.create({name:name, editorialId:editorialId, autorId:autorId,categoryId:categoriaId})
         return libro;
     } catch (error) {
+        console.log(error)
         throw new Error('error al crear libro')
     }
     
